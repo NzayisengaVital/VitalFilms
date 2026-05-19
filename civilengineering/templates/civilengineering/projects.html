@@ -229,6 +229,15 @@ VitalFilms - Movies
         <h6 class="text-danger">{{ c.name }}</h6>
         <p>{{ c.message }}</p>
         <small class="text-secondary">{{ c.created_at }}</small>
+        <!-- DELETE BUTTON -->
+        {% if request.user.is_staff %}
+        <a href="{% url 'delete_comment' c.id %}" class="btn btn-danger btn-sm mt-2"
+            onclick="return confirm('Delete this comment?')">
+            Delete
+        </a>
+        {%else%}
+        🧑‍💻
+        {%endif%}
     </div>
 
     {% empty %}

@@ -43,6 +43,8 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout'),
     path('watch/<int:id>/',views.watch_video,name='watch_video'),
 
+    path('delete-comment/<int:comment_id>/', views.delete_comment, name='delete_comment'),
+
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

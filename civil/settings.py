@@ -25,7 +25,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-e-gui4cgk_c@h%kq26ojo*z(2^b6dht*u9y0sx=k26yu6ar@by'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG", "False") == "True"
+#DEBUG = os.environ.get("DEBUG", "False") == "True"
+DEBUG = False
 
 ALLOWED_HOSTS = ['.onrender.com',
     '127.0.0.1',
@@ -137,20 +138,24 @@ STATICFILES_STORAGE = (
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+#EMAIL_PORT = 587
+#EMAIL_USE_TLS = True
 
 #EMAIL_HOST_USER = 'vitalnzayisenga301@gmail.com'
 #EMAIL_HOST_PASSWORD = 'kojtabosfewosqge'
 
 
 
-EMAIL_HOST_USER = os.environ.get('vitalnzayisenga301@gmail.com')
+#EMAIL_HOST_USER = os.environ.get('vitalnzayisenga301@gmail.com')
+#EMAIL_HOST_PASSWORD = os.environ.get('aosjrpcaulhovhte')
 
-EMAIL_HOST_PASSWORD = os.environ.get('kojtabosfewosqge')
+#EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+#EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+
+#EMAIL_HOST_USER = "yourgmail@gmail.com"
+#EMAIL_HOST_PASSWORD = "your_app_password"
 
 #cloudinary config
 CLOUDINARY_STORAGE = {

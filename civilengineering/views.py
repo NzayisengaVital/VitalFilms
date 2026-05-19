@@ -177,6 +177,8 @@ def user_signup(request):
 def about(request):
     return render(request, 'civilengineering/about.html')
 
+from .models import Contact
+
 def contact(request):
 
     if request.method == "POST":
@@ -185,30 +187,17 @@ def contact(request):
         email = request.POST.get("email")
         message = request.POST.get("message")
 
-        full_message = f"""
-New Contact Message:
-
-Name: {name}
-Email: {email}
-
-Message:
-{message}
-"""
-
-        send_mail(
-            subject=f"VitalFilms Contact from {name}",
-            message=full_message,
-            from_email=settings.EMAIL_HOST_USER,
-            recipient_list=["vitalfilms@gmail.com"],
-            fail_silently=False
+        Contact.objects.create(
+            name=name,
+            email=email,
+            message=message
         )
 
-        messages.success(request, "Message sent successfully! Vital will respond as soon as possible🏃‍♂️")
+        messages.success(request, "Message saved successfully!")
 
         return redirect("contact")
 
     return render(request, "civilengineering/contact.html")
-
 
 def privacy(request):
     return render(request, 'civilengineering/privacy.html')
@@ -233,3 +222,10 @@ def watch_video(request, id):
             'movie': movie
         }
     )
+
+
+def delete_comment(request, comment_id):
+    if request.user.is_staff:
+        comment = get_object_or_404(Comment, id=comment_id)
+        comment.delete()
+    return redirect('project')
