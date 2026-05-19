@@ -143,8 +143,14 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-EMAIL_HOST_USER = 'vitalnzayisenga301@gmail.com'
-EMAIL_HOST_PASSWORD = 'kojtabosfewosqge'
+#EMAIL_HOST_USER = 'vitalnzayisenga301@gmail.com'
+#EMAIL_HOST_PASSWORD = 'kojtabosfewosqge'
+
+
+
+EMAIL_HOST_USER = os.environ.get('vitalnzayisenga301@gmail.com')
+
+EMAIL_HOST_PASSWORD = os.environ.get('kojtabosfewosqge')
 
 #cloudinary config
 CLOUDINARY_STORAGE = {
