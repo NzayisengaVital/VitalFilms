@@ -1,0 +1,242 @@
+{% extends "civilengineering/index.html" %}
+{% load static %}
+
+{% block title %}
+VitalFilms - Movies
+{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<div class="hero">
+    <div class="hero-content">
+        <div class="container mt-4">
+
+            <h1 class="text-center text-light mb-4">
+                My Movies
+            </h1>
+
+            <form method="GET">
+                <div class="input-group">
+                    <input type="text" name="q" class="form-control" placeholder="Search movie..." value="">
+                    <button type="submit" class="btn btn-danger">
+                        Search
+                    </button>
+                </div>
+            </form>
+
+        </div>
+
+        {% if featured %}
+
+        <h1>{{ featured.title }}</h1>
+
+        {% if featured.uploaded_video %}
+
+        <video width="100%" controls class="mt-3">
+            <source src="{{ featured.uploaded_video.url }}" type="video/mp4">
+        </video>
+
+        <a href="{% url 'watch_video' x.id %}" class="btn btn-danger">
+
+            ▶ Watch
+
+        </a>
+
+        <a href="{{ featured.uploaded_video.url }}" download class="btn btn-success mt-2">
+
+            ⬇ Download
+
+        </a>
+
+        {% else %}
+        <a href="https://www.youtube.com/watch?v={{ featured.video }}" class="btn btn-danger">
+            ▶ Watch Now
+        </a>
+        {% endif %}
+
+        {% endif %}
+
+    </div>
+</div>
+
+<!-- AD SLOT -->
+<div class="text-center my-3">
+    <!-- AdSense -->
+</div>
+
+<!-- MOVIES -->
+<div class="container mt-4">
+
+    <h4 class="text-danger">🎬 All Movies</h4>
+
+    <div class="row g-4">
+
+        {% for x in myprojects %}
+
+        <div class="col-md-3 col-sm-6">
+
+            <div class="card bg-dark text-light h-100">
+
+                {% if x.uploaded_video %}
+
+                <!-- LOCAL UPLOADED VIDEO -->
+                <video class="card-img-top" controls>
+                    <source src="{{ x.uploaded_video.url }}" type="video/mp4">
+                </video>
+
+                {% else %}
+
+                <!-- YOUTUBE VIDEO -->
+                <a href="https://www.youtube.com/watch?v={{ x.video }}" target="_blank"
+                    class="text-decoration-none text-light">
+
+                    <img src="https://img.youtube.com/vi/{{ x.video }}/hqdefault.jpg" class="card-img-top">
+
+                </a>
+
+                {% endif %}
+
+                <div class="card-body text-center">
+
+                    <h6 class="card-title">
+                        {{ x.title }}
+                    </h6>
+
+                    <!-- DOWNLOAD ONLY FOR UPLOADED VIDEOS -->
+                    {% if x.uploaded_video %}
+
+                    <a href="{% url 'watch_video' x.id %}" class="btn btn-danger">
+
+                        ▶ Watch
+
+                    </a>
+
+                    <a href="{{ x.uploaded_video.url }}" download class="btn btn-success btn-sm mt-2">
+
+                        ⬇ Download
+
+                    </a>
+
+                    {% else %}
+
+                    <a href="https://www.youtube.com/watch?v={{ x.video }}" target="_blank"
+                        class="btn btn-danger btn-sm mt-2">
+                        ▶ Watch
+                    </a>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+</div>
+
+<hr>
+
+<!-- LATEST -->
+<div class="container">
+
+    <h4 class="text-danger">🔥 Latest Uploads</h4>
+
+    <div class="row g-4">
+
+        {% for x in myprojects %}
+
+        <div class="col-md-3 col-sm-6">
+
+            <div class="card movie-card text-white h-100">
+
+                {% if x.uploaded_video %}
+
+                <video class="card-img-top" controls>
+                    <source src="{{ x.uploaded_video.url }}" type="video/mp4">
+                </video>
+
+                <div class="card-body text-center">
+
+                    <h6>{{ x.title }}</h6>
+
+                    <a href="{{ x.uploaded_video.url }}" class="btn btn-danger btn-sm">
+                        ▶ Watch
+                    </a>
+
+                    <a href="{{ x.uploaded_video.url }}" download class="btn btn-success btn-sm">
+                        ⬇ Download
+                    </a>
+
+                </div>
+
+                {% else %}
+
+                <a href="https://www.youtube.com/watch?v={{ x.video }}" target="_blank">
+
+                    <img src="https://img.youtube.com/vi/{{ x.video }}/hqdefault.jpg" class="card-img-top">
+
+                    <div class="card-body text-center">
+
+
+                        <a href="https://www.youtube.com/watch?v={{ x.video }}" class="btn btn-danger btn-sm">
+                            ▶ Watch
+                        </a>
+                    </div>
+
+                </a>
+                <h6>{{ x.title }}</h6>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+<hr>
+
+<!-- COMMENTS -->
+<div class="container mt-5">
+
+    <h2 class="text-danger">💬 Leave your Comments</h2>
+
+    <form method="POST" class="mt-3">
+        {% csrf_token %}
+
+        <input type="text" name="name" placeholder="Your name" class="form-control mb-2">
+
+        <textarea name="message" placeholder="Write a comment..." class="form-control mb-2"></textarea>
+
+        <button class="btn btn-danger">
+            Comment
+        </button>
+    </form>
+
+    <hr>
+
+    {% for c in comments %}
+
+    <div class="bg-dark p-3 mb-3 rounded">
+        <h6 class="text-danger">{{ c.name }}</h6>
+        <p>{{ c.message }}</p>
+        <small class="text-secondary">{{ c.created_at }}</small>
+    </div>
+
+    {% empty %}
+
+    <p>No comments yet.</p>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

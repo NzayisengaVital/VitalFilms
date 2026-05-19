@@ -1,0 +1,65 @@
+{% extends 'civilengineering/index.html' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5 text-light">
+
+    <h1 class="text-danger">Contact Us</h1>
+
+    <!-- SUCCESS / ERROR MESSAGES -->
+    {% if messages %}
+
+    {% for message in messages %}
+
+    <div class="custom-success mt-3">
+
+        {{ message }}
+
+    </div>
+
+    {% endfor %}
+
+    {% endif %}
+
+    <!-- FORM (FIXED) -->
+    <form method="POST" action="{% url 'contact' %}">
+
+        {% csrf_token %}
+
+        <div class="mb-3">
+
+            <label>Name</label>
+
+            <input type="text" name="name" class="form-control" required>
+
+        </div>
+
+        <div class="mb-3">
+
+            <label>Email</label>
+
+            <input type="email" name="email" class="form-control" required>
+
+        </div>
+
+        <div class="mb-3">
+
+            <label>Message</label>
+
+            <textarea name="message" class="form-control" rows="5" required></textarea>
+
+        </div>
+
+        <button type="submit" class="btn btn-danger">
+
+            Send Message
+
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}
