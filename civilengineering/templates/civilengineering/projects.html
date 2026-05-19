@@ -61,8 +61,16 @@ VitalFilms - Movies
 </div>
 
 <!-- AD SLOT -->
+<!--Slots adsense section-->
+
 <div class="text-center my-3">
-    <!-- AdSense -->
+    <!-- AdSense Ad Unit -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXX" data-ad-slot="XXXX"
+        data-ad-format="auto"></ins>
+
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
 </div>
 
 <!-- MOVIES -->
@@ -86,7 +94,17 @@ VitalFilms - Movies
                 </video>
 
                 {% else %}
+                <!--Slots adsense section-->
 
+                <div class="text-center my-3">
+                    <!-- AdSense Ad Unit -->
+                    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXX" data-ad-slot="XXXX"
+                        data-ad-format="auto"></ins>
+
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
                 <!-- YOUTUBE VIDEO -->
                 <a href="https://www.youtube.com/watch?v={{ x.video }}" target="_blank"
                     class="text-decoration-none text-light">
@@ -246,6 +264,17 @@ VitalFilms - Movies
 
     {% endfor %}
 
+</div>
+<!--Slots adsense section-->
+
+<div class="text-center my-3">
+    <!-- AdSense Ad Unit -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXX" data-ad-slot="XXXX"
+        data-ad-format="auto"></ins>
+
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
 </div>
 
 {% endblock %}
