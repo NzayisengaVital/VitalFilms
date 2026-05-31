@@ -1,35 +1,105 @@
 {% extends 'civilengineering/index.html' %}
 
-{% block title %}Contact{% endblock %}
+{% block title %}
+Contact Us
+{% endblock %}
 
 {% block content %}
-<!--Slots adsense section-->
-
-
-
-
-</div>
 
 <div class="container mt-5 text-light">
 
-    <h1 class="text-danger">Contact Us</h1>
+    ```
+    <h1 class="text-danger mb-4">
+        Contact VitalFilms
+    </h1>
 
-    <!-- SUCCESS / ERROR MESSAGES -->
+    <p>
+        Thank you for visiting VitalFilms. We value feedback from our
+        visitors and welcome questions, suggestions, and comments about
+        our content and services.
+    </p>
+
+    <p>
+        Whether you would like to report an issue, share feedback,
+        suggest new content, or ask a question about our platform,
+        feel free to contact us using the form below.
+    </p>
+
+    <h3 class="text-danger mt-4">
+        Ways to Contact Us
+    </h3>
+
+    <p>
+        You can send us a message directly through the contact form.
+        We review messages regularly and do our best to respond
+        as quickly as possible.
+    </p>
+
+    <ul>
+
+        <li>
+            General inquiries about VitalFilms.
+        </li>
+
+        <li>
+            Questions regarding movie trailers and interviews.
+        </li>
+
+        <li>
+            Feedback about website performance.
+        </li>
+
+        <li>
+            Suggestions for future content.
+        </li>
+
+        <li>
+            Reporting technical issues.
+        </li>
+
+    </ul>
+
+    <div class="mt-4">
+
+        <h3 class="text-danger">
+            Contact Information
+        </h3>
+
+        <p>
+            <strong>Email:</strong>
+            vitalnzayisenga301@gmail.com
+        </p>
+
+        <p>
+            <strong>Location:</strong>
+            Kigali, Rwanda
+        </p>
+
+        <p>
+            <strong>Phone:</strong>
+            +250 790 434 237
+        </p>
+
+    </div>
+
     {% if messages %}
 
     {% for message in messages %}
 
     <div class="custom-success mt-3">
-
         {{ message }}
-
     </div>
 
     {% endfor %}
 
     {% endif %}
 
-    <!-- FORM (FIXED) -->
+    <hr>
+
+    <h3 class="text-danger">
+        Send Us a Message
+    </h3>
+
     <form method="POST" action="{% url 'contact' %}">
 
         {% csrf_token %}
@@ -65,6 +135,40 @@
         </button>
 
     </form>
+
+    <hr class="my-5">
+
+    <h3 class="text-danger">
+        Frequently Asked Questions
+    </h3>
+
+    <h5>
+        What is VitalFilms?
+    </h5>
+
+    <p>
+        VitalFilms is a platform that organizes movie trailers,
+        behind-the-scenes content, and interviews for movie enthusiasts.
+    </p>
+
+    <h5>
+        Can I suggest content?
+    </h5>
+
+    <p>
+        Yes. We welcome suggestions and recommendations from visitors.
+        Feel free to use the contact form to share your ideas.
+    </p>
+
+    <h5>
+        How long does it take to receive a response?
+    </h5>
+
+    <p>
+        Response times may vary, but we aim to review and respond
+        to messages as soon as possible.
+    </p>
+    ```
 
 </div>
 
